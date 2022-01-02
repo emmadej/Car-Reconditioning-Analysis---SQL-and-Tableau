@@ -1,3 +1,3 @@
-# First-Project
+# FirstProject
 
 Emma tries to make a project TBD about what
