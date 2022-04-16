@@ -22,9 +22,8 @@ CREATE TABLE CarData (
 
 BULK INSERT CarData
 FROM 'C:\Users\Emma DeJarnette\Documents\DATA for VSC\Carvana\CaseDataCarvananocommas.csv'
-WITH (FIRSTROW = 2 --Removed Format = 'csv' and worked for whatever reason: https://github.com/Microsoft/sql-server-samples/issues/408
-      
-      , FIELDTERMINATOR = ',' -- heyyo you gotta do this:https://www.howtogeek.com/howto/21456/export-or-save-excel-files-with-pipe-or-other-delimiters-instead-of-commas/
+WITH (FIRSTROW = 2 
+      , FIELDTERMINATOR = ',' 
       , ROWTERMINATOR = '\n');
 
 -------------------------------------
@@ -36,8 +35,8 @@ FROM CarData
 WHERE ReconditioningCost IS NOT NULL AND OdometerValue IS NOT NULL AND ReconditioningCost >0 AND OdometerValue >0; 
 
 -- Determine Distinct Month and Year Combinations to show time range that data spans
-SELECT DISTINCT(DATEPART(mm,AcquisitionDate)) as months, -- Cars acquired over the course of 5 Months: September (9) - January (1)
-    (DATEPART(yy,AcquisitionDate)) as years 
+SELECT DISTINCT(DATEPART(mm,AcquisitionDate)) as months -- Cars acquired over the course of 5 Months: September (9) - January (1)
+    ,(DATEPART(yy,AcquisitionDate)) as years 
      FROM CarData
         ORDER BY years ASC, months ASC
 
